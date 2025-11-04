@@ -28,8 +28,24 @@ public class AppConfiguration {
             System.err.println("Failed to load: " + filename);
         }
     }
+
+    // 🔹 Utility method to replace ${ENV_VAR} with actual environment variable value
+    private static String resolveEnv(String value, String defaultValue) {
+        if (value == null || value.isEmpty()) {
+            return defaultValue;
+        }
+
+        if (value.startsWith("${") && value.endsWith("}")) {
+            String envName = value.substring(2, value.length() - 1);
+            String envValue = System.getenv(envName);
+            return envValue != null ? envValue : defaultValue;
+        }
+
+        return value;
+    }
+
     public static String getPrometheusUid() {
-        return props.getProperty("prometheus.uid", "DS_PROMETHEUS_UID");
+        return resolveEnv(props.getProperty("prometheus.uid"), "DS_PROMETHEUS_UID");
     }
 
     public static String getPrometheusType() {
@@ -49,14 +65,14 @@ public class AppConfiguration {
     }
 
     public static String getGrafanaUsername() {
-        return props.getProperty("grafana.username", "admin");
+        return resolveEnv(props.getProperty("grafana.username"), "admin");
     }
 
     public static String getGrafanaPassword() {
-        return props.getProperty("grafana.password", "admin");
+        return resolveEnv(props.getProperty("grafana.password"), "admin");
     }
 
     public static String getGrafanaApiUrl() {
-        return props.getProperty("grafana.api.url", "admin");
+        return resolveEnv(props.getProperty("grafana.api.url"), "http://NIFAOt:3000");
     }
 }

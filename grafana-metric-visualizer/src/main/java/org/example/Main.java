@@ -20,8 +20,13 @@ public class Main {
 
             DashboardService dashboardService = new DashboardService();
             dashboardService.saveDashboard(dashboard, AppConfiguration.getOutputPath());
-            GrafanaHttpClient.sendDashboard(dashboard.toJSON());
 
+            if (AppConfiguration.isGrafanaEnabled()) {
+                GrafanaHttpClient.sendDashboard(dashboard.toJSON());
+            } else {
+                logger.info("Skipping Grafana upload (GRAFANA_ENABLED=false)");
+            }
+            
             logger.info("Dashboard generation completed successfully!");
 
         } catch (GrafanaException e) {

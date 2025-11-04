@@ -75,4 +75,8 @@ public class AppConfiguration {
     public static String getGrafanaApiUrl() {
         return resolveEnv(props.getProperty("grafana.api.url"), "http://NIFAOt:3000");
     }
+
+    public static boolean isGrafanaEnabled() {
+        return Boolean.parseBoolean(resolveEnv(props.getProperty("grafana.enabled"), "true"));
+    }
 }

@@ -45,5 +45,6 @@ jobs:
           GRAFANA_API_URL: ${{ secrets.GRAFANA_API_URL }}
           GRAFANA_USERNAME: ${{ secrets.GRAFANA_USERNAME }}
           GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
+          GRAFANA_ENABLED: ${{ secrets.GRAFANA_ENABLED }}
         run: |
           java -jar build/libs/*.jar

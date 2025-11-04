@@ -1,4 +1,4 @@
-package org.example.builders;
+package org.example.factory.builders;
 
 import com.grafana.foundation.dashboard.*;
 import com.grafana.foundation.prometheus.Dataquery;

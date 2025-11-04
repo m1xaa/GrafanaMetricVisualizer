@@ -1,0 +1,43 @@
+name: Deploy Grafana Dashboard
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and Deploy Dashboard
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build with Gradle
+        run: ./gradlew clean build -x test
+
+      - name: Run Dashboard Sender
+        env:
+          PROMETHEUS_UID: ${{ secrets.PROMETHEUS_UID }}
+          GRAFANA_API_URL: ${{ secrets.GRAFANA_API_URL }}
+          GRAFANA_USERNAME: ${{ secrets.GRAFANA_USERNAME }}
+          GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
+        run: |
+          java -jar build/libs/*.jar

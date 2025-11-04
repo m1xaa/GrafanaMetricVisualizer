@@ -4,6 +4,7 @@ import com.grafana.foundation.dashboard.*;
 import com.grafana.foundation.prometheus.Dataquery;
 import org.example.builders.GrafanaDashboardBuilder;
 import org.example.builders.GrafanaPanelBuilder;
+import org.example.network.GrafanaHttpClient;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class Main {
                     .schemaVersion((short) 41)
                     .refresh("5s")
                     .timeRange("now-30m", "now")
-                    .tags("java", "prometheus")
+                    .tags("java", "prometheus", "foundation-sdk")
                     .addPanel(new GrafanaPanelBuilder()
                             .id(1)
                             .type("timeseries")
@@ -38,6 +39,8 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            GrafanaHttpClient.sendDashboard(dashboard.toJSON());
 
         } catch (Exception e) {
             e.printStackTrace();

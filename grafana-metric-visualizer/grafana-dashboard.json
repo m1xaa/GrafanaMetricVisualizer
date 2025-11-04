@@ -1,7 +1,7 @@
 {
   "uid" : "java-cpu-dashboard",
   "title" : "CPU Usage Dashboard",
-  "tags" : [ "java", "prometheus" ],
+  "tags" : [ "java", "prometheus", "foundation-sdk" ],
   "timezone" : "browser",
   "editable" : true,
   "graphTooltip" : 0,

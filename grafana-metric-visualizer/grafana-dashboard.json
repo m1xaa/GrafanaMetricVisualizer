@@ -1,0 +1,48 @@
+{
+  "uid" : "java-cpu-dashboard",
+  "title" : "CPU Usage Dashboard",
+  "tags" : [ "java", "prometheus" ],
+  "timezone" : "browser",
+  "editable" : true,
+  "graphTooltip" : 0,
+  "time" : {
+    "from" : "now-30m",
+    "to" : "now"
+  },
+  "fiscalYearStartMonth" : 0,
+  "refresh" : "5s",
+  "schemaVersion" : 41,
+  "panels" : [ {
+    "type" : "timeseries",
+    "id" : 1,
+    "targets" : [ {
+      "expr" : "cpu_usage",
+      "refId" : "A",
+      "datasource" : {
+        "type" : "prometheus",
+        "uid" : "DS_PROMETHEUS_UID"
+      }
+    } ],
+    "title" : "CPU Usage Over Time",
+    "transparent" : false,
+    "datasource" : {
+      "type" : "prometheus",
+      "uid" : "DS_PROMETHEUS_UID"
+    },
+    "gridPos" : {
+      "h" : 8,
+      "w" : 24,
+      "x" : 0,
+      "y" : 0,
+      "static" : false
+    },
+    "fieldConfig" : {
+      "defaults" : {
+        "unit" : "percent"
+      },
+      "overrides" : [ ]
+    }
+  } ],
+  "templating" : { },
+  "annotations" : { }
+}

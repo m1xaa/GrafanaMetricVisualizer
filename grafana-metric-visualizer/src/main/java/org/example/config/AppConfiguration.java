@@ -29,7 +29,6 @@ public class AppConfiguration {
         }
     }
 
-    // 🔹 Utility method to replace ${ENV_VAR} with actual environment variable value
     private static String resolveEnv(String value, String defaultValue) {
         if (value == null || value.isEmpty()) {
             return defaultValue;

@@ -22,10 +22,10 @@ public class Main {
             dashboardService.saveDashboard(dashboard, AppConfiguration.getOutputPath());
 
             if (AppConfiguration.isGrafanaEnabled()) {
-                GrafanaHttpClient.sendDashboard(dashboard.toJSON());
-            } else {
                 logger.info("grafana enabled: {}", AppConfiguration.isGrafanaEnabled());
                 logger.info("grafana url: {}", AppConfiguration.getGrafanaApiUrl());
+                GrafanaHttpClient.sendDashboard(dashboard.toJSON());
+            } else {
                 logger.info("Skipping Grafana upload (GRAFANA_ENABLED=false)");
             }
 

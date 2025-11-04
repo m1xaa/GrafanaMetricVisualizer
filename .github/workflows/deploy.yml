@@ -20,20 +20,22 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Cache Gradle packages
+      - name: Cache Gradle dependencies
         uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('grafana-metric-visualizer/**/*.gradle*', 'grafana-metric-visualizer/**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Build with Gradle
+      - name: Build project
+        working-directory: grafana-metric-visualizer
         run: ./gradlew clean build -x test
 
-      - name: Run Dashboard Sender
+      - name: Run dashboard deployer
+        working-directory: grafana-metric-visualizer
         env:
           PROMETHEUS_UID: ${{ secrets.PROMETHEUS_UID }}
           GRAFANA_API_URL: ${{ secrets.GRAFANA_API_URL }}

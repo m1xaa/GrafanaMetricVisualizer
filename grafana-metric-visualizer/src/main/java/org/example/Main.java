@@ -24,9 +24,11 @@ public class Main {
             if (AppConfiguration.isGrafanaEnabled()) {
                 GrafanaHttpClient.sendDashboard(dashboard.toJSON());
             } else {
+                logger.info("grafana enabled: {}", AppConfiguration.isGrafanaEnabled());
+                logger.info("grafana url: {}", AppConfiguration.getGrafanaApiUrl());
                 logger.info("Skipping Grafana upload (GRAFANA_ENABLED=false)");
             }
-            
+
             logger.info("Dashboard generation completed successfully!");
 
         } catch (GrafanaException e) {

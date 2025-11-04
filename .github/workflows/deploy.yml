@@ -30,6 +30,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Make gradlew executable
+        working-directory: grafana-metric-visualizer
+        run: chmod +x gradlew
+
       - name: Build project
         working-directory: grafana-metric-visualizer
         run: ./gradlew clean build -x test

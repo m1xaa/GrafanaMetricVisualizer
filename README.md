@@ -93,7 +93,7 @@ java -jar build/libs/grafana-metric-visualizer-1.0-SNAPSHOT.jar
 When executed successfully:
 - A JSON dashboard file is created at  
   ```
-  current_working_directory/dashboards/grafana-dashboard.json
+  current_working_directory/${OUTPUT_DIRECTORY}/${OUTPUT_FILE_NAME}
   ```
 - Example log output:
   ```

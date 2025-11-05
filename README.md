@@ -112,7 +112,7 @@ If Grafana upload is enabled, you will also see:
 
 ## Configuration (Environment Variables)
 
-You can configure the application using environment variables by creating a local configuration file named `application-dev.properties` in the directory where `application.properties` is located.
+You can configure the application using environment variables by creating a local configuration file named `application-dev.properties` in the directory where `application.properties` is located.  
 
 | Variable | Description | Example |
 |-----------|-------------|----------|
@@ -126,6 +126,8 @@ You can configure the application using environment variables by creating a loca
 | `GRAFANA_USERNAME` | Grafana admin username | `admin` |
 | `GRAFANA_PASSWORD` | Grafana admin password | `admin` |
 | `GRAFANA_ENABLED` | Enable or disable automatic upload to Grafana | `true` / `false` |
+
+Automatic upload to Grafana is not possible when running CI/CD script because Grafana is only hosted locally.
 
 ---
 

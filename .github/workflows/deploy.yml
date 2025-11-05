@@ -36,7 +36,7 @@ jobs:
 
       - name: Build project
         working-directory: grafana-metric-visualizer
-        run: ./gradlew clean shadowJar -x test
+        run: ./gradlew clean shadowJar
 
       - name: Run dashboard deployer
         working-directory: grafana-metric-visualizer

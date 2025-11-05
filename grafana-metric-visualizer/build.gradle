@@ -12,6 +12,11 @@ java {
     }
 }
 
+test {
+    useJUnitPlatform()
+    systemProperty "app.profile", "test"
+}
+
 repositories {
     mavenCentral()
 }

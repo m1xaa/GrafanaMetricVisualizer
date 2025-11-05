@@ -24,13 +24,11 @@ class DashboardFactoryTest {
     @Test
     void createCpuDashboard_ContainsPrometheusPanel() throws JsonProcessingException {
         Dashboard dashboard = DashboardFactory.createCpuDashboard();
-        var panelWrapper = dashboard.panels.getFirst();
-        String panelJson = panelWrapper.toJSON();
-        System.out.println(panelJson);
+        var jsonPanel = dashboard.panels.getFirst().toJSON();
 
-        assertTrue(panelJson.contains("\"type\" : \"timeseries\""), "Panel type not found in JSON");
-        assertTrue(panelJson.contains("\"title\" : \"CPU Usage Over Time\""), "Panel title not found in JSON");
-        assertTrue(panelJson.contains(AppConfiguration.getPrometheusUid()), "Prometheus UID missing in JSON");
+        assertTrue(jsonPanel.contains("\"type\" : \"timeseries\""), "Panel type not found in JSON");
+        assertTrue(jsonPanel.contains("\"title\" : \"CPU Usage Over Time\""), "Panel title not found in JSON");
+        assertTrue(jsonPanel.contains(AppConfiguration.getPrometheusUid()), "Prometheus UID missing in JSON");
     }
 
 }

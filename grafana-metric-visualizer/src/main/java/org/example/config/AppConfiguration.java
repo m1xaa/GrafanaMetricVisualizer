@@ -51,8 +51,12 @@ public class AppConfiguration {
         return props.getProperty("prometheus.type", "prometheus");
     }
 
-    public static String getOutputPath() {
-        return props.getProperty("output.path", "grafana-dashboard.json");
+    public static String getOutputDirectory() {
+        return props.getProperty("output.directory", "dashboards");
+    }
+
+    public static String getOutputFileName() {
+        return props.getProperty("output.file.name", "grafana-dashboard.json");
     }
 
     public static String getDefaultRefresh() {

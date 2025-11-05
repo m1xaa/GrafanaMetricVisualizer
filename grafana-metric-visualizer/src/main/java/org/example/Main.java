@@ -19,7 +19,7 @@ public class Main {
             Dashboard dashboard = DashboardFactory.createCpuDashboard();
 
             DashboardService dashboardService = new DashboardService();
-            dashboardService.saveDashboard(dashboard, AppConfiguration.getOutputPath());
+            dashboardService.saveDashboard(dashboard);
 
             if (AppConfiguration.isGrafanaEnabled()) {
                 GrafanaHttpClient.sendDashboard(dashboard.toJSON());

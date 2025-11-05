@@ -131,6 +131,18 @@ Automatic upload to Grafana is not possible when running CI/CD script because Gr
 
 ---
 
+## Testing
+
+Before running tests, create an `application-test.properties` file in **`src/test/resources`**.  
+The project automatically uses this file when running tests (`app.profile=test`).
+
+Run all tests:
+```bash
+./gradlew clean test
+```
+
+---
+
 ## CI/CD Integration
 
 This project includes a simple **GitHub Actions CI/CD pipeline** that:
